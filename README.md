@@ -42,4 +42,4 @@ Anonymous user (null session) get more restriction on default settings of new Wi
 * **Eternalsynergy** requires access to named pipe. I believe this exploit is modified from Eternalromance to target Windows 8 and later. Eternalsynergy uses another bug for info leak and does some trick to find executable memory (I do not know how it works because I read only output log and pcap file).
 
 ## Modified to run natively with Python 3.
-Very minor modifications, primarily to some print statemnents to allow full Python 3 support - finalriposte 22 Feb, 2021.
+Very minor modifications, primarily to some print statements to allow full Python 3 support - finalriposte 22 Feb, 2021.
